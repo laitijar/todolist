@@ -1,0 +1,33 @@
+<%= form_for(@todo_task) do |f| %>
+  <% if @todo_task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@todo_task.errors.count, "error") %> prohibited this todo_task from being saved:</h2>
+
+      <ul>
+        <% @todo_task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+  <div class="field">
+    <%= f.label :done %><br />
+    <%= f.check_box :done %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :user_id %>
+  </div>
+  <br/>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

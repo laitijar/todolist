@@ -1,0 +1,19 @@
+<h1>List of task</h1>
+
+<%= current_user.id %>
+
+<ul id="tasks">
+  <% for task in @todo_tasks %>
+    <%= content_tag_for :li, task do %>
+      <span class="handle">[drag]</span>
+
+      <%= link_to h(task.title), task %> |
+      <%= link_to 'X Remove task', task, :confirm => 'Are you sure?', :method => :delete %>
+    <% end %>
+  <% end %>
+</ul>
+<%= sortable_element("tasks", :url => sort_todo_tasks_path, :handle => "handle") %>
+
+<br />
+
+<%= link_to 'Create new task', new_todo_task_path(:id => current_user.id) %>
