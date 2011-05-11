@@ -3,7 +3,8 @@ class TodoTasksController < ApplicationController
   # GET /todo_tasks
   # GET /todo_tasks.xml
   def index
-    @todo_tasks = TodoTask.order("position")
+    TodoTask.all
+    @todo_tasks = TodoTask.where(:user_id => current_user.id).order("position")
 
     respond_to do |format|
       format.html # index.html.erb
